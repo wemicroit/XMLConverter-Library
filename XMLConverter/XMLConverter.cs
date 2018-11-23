@@ -46,7 +46,7 @@ namespace WeMicroIt.Utils.XMLConverter
             }
         }
 
-        public T DeSerializeObjects<T>(string content)
+        public List<T> DeSerializeObjects<T>(string content)
         {
             throw new NotImplementedException();
         }
