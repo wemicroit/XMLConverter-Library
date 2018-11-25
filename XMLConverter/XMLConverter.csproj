@@ -7,7 +7,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>James Thompson</Authors>
     <Company>WeMicroIt</Company>
-    <Version>0.5.0-Beta2</Version>
+    <Version>0.5.0-Beta3</Version>
     <Product>XMLConverter - Library</Product>
     <Copyright>2018</Copyright>
     <PackageTags>XML Converter NewtonSoft</PackageTags>
