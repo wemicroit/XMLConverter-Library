@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WeMicroIt.Utils.XMLConverter.Interfaces
 {
-    public interface IXMLConverter
+    public interface IXMLConversion
     {
     }
 }
