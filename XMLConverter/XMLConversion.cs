@@ -40,6 +40,10 @@ namespace WeMicroIt.Utils.XMLConverter
             {
                 throw new FileNotFoundException();
             }
+            if (string.IsNullOrEmpty(destinationPath))
+            {
+                throw new DirectoryNotFoundException();
+            }
 
             XslCompiledTransform xslt = new XslCompiledTransform();
             xslt.Load(templatePath);
