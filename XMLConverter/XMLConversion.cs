@@ -11,45 +11,74 @@ namespace WeMicroIt.Utils.XMLConverter
 {
     public class XMLConversion : IXMLConversion
     {
+        private string xlstTemplatePath { get; set; }
 
         public XMLConversion()
         {
         }
-
-        public T DeserializeObjects<T>(string path, string template)
+        
+        public string SetXLSPath(string path)
         {
             try
             {
-                // Load the style sheet.
-                XslCompiledTransform xslt = new XslCompiledTransform();
-                xslt.Load(template);
-
-                Stream res = null;
-                // Execute the transform and output the results to a file.
-                xslt.Transform(path, null, res);
-                return JsonConvert.DeserializeObject<T>(res.ToString());
+                xlstTemplatePath = path;
+                return xlstTemplatePath;
             }
             catch (Exception)
             {
-
-                throw;
+                return null;
             }
+        }
+
+        public bool TransformObjects(string sourcePath, string templatePath, string destinationPath)
+        {
+            if (string.IsNullOrEmpty(sourcePath))
+            {
+                throw new FileNotFoundException();
+            }
+            if (string.IsNullOrEmpty(templatePath))
+            {
+                throw new FileNotFoundException();
+            }
+
+            XslCompiledTransform xslt = new XslCompiledTransform();
+            xslt.Load(templatePath);
+
+            if (xslt.Equals(new XslCompiledTransform()))
+            {
+                throw new Exception();
+            }
+
+            xslt.Transform(sourcePath, destinationPath);
+            return true;
+        }
+
+        public T DeSerializeObjects<T>(string path)
+        {
+            if (string.IsNullOrEmpty(path))
+            {
+                throw new FileNotFoundException();
+            }
+            XDocument doc = XDocument.Load(path);
+            if (doc == null)
+            {
+                throw new InvalidDataException();
+            }
+            return DeSerializeObjects<T>(doc.FirstNode);
         }
 
         public T DeSerializeObjects<T>(XObject content)
         {
-            try
+            if (content == null)
             {
-                var set = new JsonSerializerSettings()
-                {
-                    MetadataPropertyHandling = MetadataPropertyHandling.ReadAhead,
-                };
-                return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeXNode(content), set);
+                throw new ArgumentNullException();
             }
-            catch (Exception exc)
+            string json = JsonConvert.SerializeXNode(content);
+            if (string.IsNullOrEmpty(json))
             {
-                return default(T);
+                throw new ArgumentNullException();
             }
+            return JsonConvert.DeserializeObject<T>(json);
         }
 
         public string SerializeObjects(object content)
