@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
+using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Xsl;
 using WeMicroIt.Utils.XMLConverter.Interfaces;
@@ -11,22 +13,14 @@ namespace WeMicroIt.Utils.XMLConverter
 {
     public class XMLConversion : IXMLConversion
     {
-        private string xlstTemplatePath { get; set; }
-
         public XMLConversion()
         {
         }
         
-        public string SetXLSPath(string path)
         {
-            try
             {
-                xlstTemplatePath = path;
-                return xlstTemplatePath;
             }
-            catch (Exception)
             {
-                return null;
             }
         }
 
@@ -40,11 +34,6 @@ namespace WeMicroIt.Utils.XMLConverter
             {
                 throw new FileNotFoundException();
             }
-            if (string.IsNullOrEmpty(destinationPath))
-            {
-                throw new DirectoryNotFoundException();
-            }
-
             XslCompiledTransform xslt = new XslCompiledTransform();
             xslt.Load(templatePath);
 
@@ -52,9 +41,8 @@ namespace WeMicroIt.Utils.XMLConverter
             {
                 throw new Exception();
             }
+        }
 
-            xslt.Transform(sourcePath, destinationPath);
-            return true;
         }
 
         public T DeSerializeObjects<T>(string path)
