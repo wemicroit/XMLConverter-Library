@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0; net461</TargetFrameworks>
     <RootNamespace>WeMicroIt.Utils.XMLConverter</RootNamespace>
-    <AssemblyName>WeMicroIt.Utils.XMLConverter</AssemblyName>
+    <AssemblyName>Utils.XMLConverter</AssemblyName>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>James Thompson</Authors>
     <Company>WeMicroIt</Company>
