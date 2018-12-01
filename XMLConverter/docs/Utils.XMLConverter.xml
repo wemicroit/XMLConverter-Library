@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Utils.XMLConverter</name>
+    </assembly>
+    <members>
+        <member name="T:WeMicroIt.Utils.XMLConverter.Interfaces.IXMLConversion">
+            <summary>
+        This interface allow's for Depenency Injection of the XML Conversion service into the classes.
+      </summary><remark>
+        <para>This interface is responsible for managing the interaction with the XML Conversion service.</para>
+        <para>It can handle Serialization, DeSerialization, Transformation as well as splitting and grouping. </para>
+      </remark><seealso cref="M:WeMicroIt.Utils.XMLConverter.XMLConversion.#ctor" /> 
+        </member>
+        <member name="T:WeMicroIt.Utils.XMLConverter.XMLConversion">
+            <summary>
+        This Class contains all of the logic beyond the XML Conversion.
+      </summary><remark>
+        <para>Use IXMLConversion to dependency inject this service.</para>
+      </remark> 
+        </member>
+        <member name="M:WeMicroIt.Utils.XMLConverter.XMLConversion.#ctor">
+            <summary>
+        The default constructor used to build an instance of XML Conversion.
+      </summary><example>
+        <code>
+          XMLConversion xmlConversion = new XMLConversion();
+        </code>
+      </example> 
+        </member>
+        <member name="M:WeMicroIt.Utils.XMLConverter.XMLConversion.Transforms(System.String,System.String,System.String)">
+            <summary>
+        This method is responsible for transforming the selected file and writing it to the specified location using the default XML Writing Settings.
+      </summary><remark>
+        <para>
+          To use the service you need to pass in <paramref name="sourcePath" />, <paramref name="templatePath" /> as well as <paramref name="destinationPath" />.
+        </para>
+      </remark><param name="sourcePath">The file which is to be the source of the data which is used for the transformation.</param><param name="templatePath">The file which defines the template which is to be used for the transformation.</param><param name="destinationPath">The file which the transformed data will be written to.</param><seealso cref="!:Transform(string, string, string, XMLWriterSettings)" /><example>
+        <code>
+          XMLConversion xmlConversion = new XMLConversion();
+          xmlConversion.Transform("path1","path2", "path3");
+        </code>
+      </example> 
+        </member>
+        <member name="M:WeMicroIt.Utils.XMLConverter.XMLConversion.Transforms(System.String,System.String,System.String,System.Xml.XmlWriterSettings)">
+            <summary>
+        This method is responsible for transforming the selected file and writing it to the specified location using the default XML Writing Settings.
+      </summary><remark>
+        <para>
+          To use the service you need to pass in <paramref name="sourcePath" />, <paramref name="templatePath" /> as well as <paramref name="destinationPath" />.
+        </para>
+      </remark><param name="sourcePath">The file which is to be the source of the data which is used for the transformation.</param><param name="templatePath">The file which defines the template which is to be used for the transformation.</param><param name="destinationPath">The file which the transformed data will be written to.</param><param name="settings">An XMLWriterSettings object which contains all the settings to be used for writing the xml file.</param><seealso cref="!:Transform(string, string, string)" /><example>
+        <code>
+          XMLConversion xmlConversion = new XMLConversion();
+          xmlConversion.Transform("path1","path2", "path3", settings);
+        </code>
+      </example> 
+        </member>
+        <member name="M:WeMicroIt.Utils.XMLConverter.XMLConversion.PureSplits(System.String,System.String)">
+            <summary>
+        Is responsible for taking the specified XML Document and splitting it into 1 document per node.
+      </summary><remark>
+        <para>
+          Just like the other methods this requires a file address <paramref name="path" /> &amp; and an element indicator <paramref name="sourcePath" /> to split on.
+        </para>
+      </remark><param name="path">Which node designates where the file should be split.</param><param name="sourcePath">The file which is to be the source of the data which is used for the split.</param><returns>
+        A List of XDocuments which have been constructed based on the node path.
+      </returns><exception cref="T:System.IO.FileNotFoundException">Thrown when the source path is not set correctly.</exception><exception cref="T:System.Collections.Generic.KeyNotFoundException">Thrown when the node path can not be resolved or it is not set.</exception><example>
+        <code>
+          XMLConversion xmlConversion = new XMLConversion();
+          List&lt;XElement&gt; list = xmlConversion.PureSplit("nodePath1","filePath2");
+        </code>
+      </example> 
+        </member>
+        <member name="M:WeMicroIt.Utils.XMLConverter.XMLConversion.GroupSplits(System.String,System.String,System.String)">
+            <summary>
+        Is responsible for taking the specified XML Document and splitting it into groups based on the argument based in.
+      </summary><remark>
+        <para>
+          Just like the other methods this requires a file address <paramref name="path" /> &amp;, an element indicator <paramref name="sourcePath" /> to split on as well as group indicator <paramref name="grouping" />.
+        </para>
+      </remark><param name="path">Which node designates where the file should be split.</param><param name="sourcePath">The file which is to be the source of the data which is used for the split.</param><param name="grouping">How should the nodes be organised into documents.</param><returns>
+        A List of XDocuments which have been constructed based on the node path.
+      </returns><exception cref="T:System.IO.FileNotFoundException">Thrown when the source path is not set correctly.</exception><exception cref="T:System.Collections.Generic.KeyNotFoundException">Thrown when the node path can not be resolved or it is not set.</exception><example>
+        <code>
+          XMLConversion xmlConversion = new XMLConversion();
+          List&lt;XElement&gt; list = xmlConversion.PureSplit("nodePath1","filePath2");
+        </code>
+      </example> 
+        </member>
+        <member name="M:WeMicroIt.Utils.XMLConverter.XMLConversion.DeSerializeDocument(System.String)">
+            <summary>
+        Read in the document which can be found at the specified path.
+      </summary><remark>
+        <para>
+          This method only takes 1 argument <paramref name="path" /> which is where the source data is.
+        </para>
+      </remark><param name="path">What document should act as the source for XML Reader.</param><returns>
+        Will return a representation of the xml document.
+      </returns><exception cref="T:System.IO.FileNotFoundException">Thrown when the source path is not set correctly.</exception><exception cref="T:System.IO.InvalidDataException">Thrown when the document does not load correctly.</exception><example>
+        <code>
+          XMLConversion xmlConversion = new XMLConversion();
+          XDocument doc = DeSerializeDocument(path);
+        </code>
+      </example> 
+        </member>
+        <member name="M:WeMicroIt.Utils.XMLConverter.XMLConversion.DeserializeObjects``1(System.String)">
+            <summary>
+        Read in the document and return it as a list of items.
+      </summary><remark>
+        <para>
+          This method only takes 1 argument <paramref name="path" /> which is where the source data is.
+        </para>
+      </remark><param name="path">What document should act as the source for XML Reader.</param><returns>
+        Will return a list objects defined by T.
+      </returns><exception cref="T:System.IO.FileNotFoundException">Thrown when the source path is not set correctly.</exception><exception cref="T:System.IO.InvalidDataException">Thrown when the document does not load correctly.</exception><exception cref="T:System.ArgumentNullException">Thrown when the conversion to objects fails.</exception><example>
+        <code>
+          XMLConversion xmlConversion = new XMLConversion();
+          List&lt;T&gt; doc = DeSerializeObject&lt;T&gt;(path);
+        </code>
+      </example> 
+        </member>
+        <member name="M:WeMicroIt.Utils.XMLConverter.XMLConversion.DeserializeObjects``1(System.Xml.Linq.XDocument)">
+            <summary>
+        Read in the document and return it as a list of items.
+      </summary><remark>
+        <para>
+          This method only takes 1 argument <paramref name="doc" /> which contains all the data.
+        </para>
+      </remark><param name="doc">A XML data which is to be converted to a list of objects.</param><returns>
+        Will return a list objects defined by T.
+      </returns><exception cref="T:System.IO.InvalidDataException">Thrown when the document does not load correctly.</exception><exception cref="T:System.ArgumentNullException">Thrown when the conversion to objects fails.</exception><example>
+        <code>
+          XMLConversion xmlConversion = new XMLConversion();
+          List&lt;T&gt; doc = DeSerializeObject&lt;T&gt;(doc);
+        </code>
+      </example> 
+        </member>
+        <member name="M:WeMicroIt.Utils.XMLConverter.XMLConversion.DeSerializeObjects``1(System.Xml.Linq.XObject)">
+            <summary>
+        Read in the object and return it as a list of items.
+      </summary><remark>
+        <para>
+          This method only takes 1 argument <paramref name="content" /> which is an objecct which contains the source data.
+        </para>
+      </remark><param name="content">What data needs to be converted.</param><returns>
+        Will return a list objects defined by T.
+      </returns><exception cref="T:System.IO.InvalidDataException">Thrown when the document does not load correctly.</exception><exception cref="T:System.ArgumentNullException">Thrown when the conversion to objects fails.</exception><example>
+        <code>
+          XMLConversion xmlConversion = new XMLConversion();
+          List&lt;T&gt; doc = DeSerializeObject&lt;T&gt;(content);
+        </code>
+      </example> 
+        </member>
+        <member name="M:WeMicroIt.Utils.XMLConverter.XMLConversion.SerializeObjects(System.Object)">
+            <exception cref="T:System.NotImplementedException">Method is yet to be completed.</exception> 
+        </member>
+    </members>
+</doc>

@@ -13,6 +13,7 @@
     <PackageTags>XML Converter NewtonSoft</PackageTags>
     <PackageId>WeMicroIt.Utils.XMLConverter</PackageId>
     <Description>A simple wrapper which makes converting to and from XML easier.</Description>
+    <DocumentationFile>.\docs\Utils.XMLConverter.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
