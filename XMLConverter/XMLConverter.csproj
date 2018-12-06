@@ -7,13 +7,21 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>James Thompson</Authors>
     <Company>WeMicroIt</Company>
-    <Version>0.5.0-Beta5</Version>
+    <Version>0.7.0</Version>
     <Product>XMLConverter - Library</Product>
     <Copyright>2018</Copyright>
     <PackageTags>XML Converter NewtonSoft</PackageTags>
     <PackageId>WeMicroIt.Utils.XMLConverter</PackageId>
     <Description>A simple wrapper which makes converting to and from XML easier.</Description>
     <DocumentationFile>.\docs\Utils.XMLConverter.xml</DocumentationFile>
+    <AssemblyVersion>0.7.0.0</AssemblyVersion>
+    <FileVersion>0.7.0.0</FileVersion>
+    <PackageReleaseNotes>Added in XElememtn stuff</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/wemicroit/XMLConverter-Library</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/wemicroit/XMLConverter-Library</RepositoryUrl>
+    <RepositoryType>GIT</RepositoryType>
+    <PackageLicenseUrl>https://github.com/wemicroit/XMLConverter-Library/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/wemicroit/XMLConverter-Library/rc/XMLConverter/Resources/Logo.png</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>
