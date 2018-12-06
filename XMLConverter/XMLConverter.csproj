@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0; net461</TargetFrameworks>
+    <RootNamespace>WeMicroIt.Utils.XMLConverter</RootNamespace>
+    <AssemblyName>Utils.XMLConverter</AssemblyName>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>James Thompson</Authors>
+    <Company>WeMicroIt</Company>
+    <Version>0.5.0-Beta5</Version>
+    <Product>XMLConverter - Library</Product>
+    <Copyright>2018</Copyright>
+    <PackageTags>XML Converter NewtonSoft</PackageTags>
+    <PackageId>WeMicroIt.Utils.XMLConverter</PackageId>
+    <Description>A simple wrapper which makes converting to and from XML easier.</Description>
+    <DocumentationFile>.\docs\Utils.XMLConverter.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
+  </ItemGroup>
+
+</Project>
