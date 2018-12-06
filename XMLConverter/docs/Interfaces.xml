@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<doc>
+  <interfaces name="IXMLConversion">
+    <interface>
+      <summary>
+        This interface allow's for Depenency Injection of the XML Conversion service into the classes.
+      </summary>
+      <remark>
+        <para>This interface is responsible for managing the interaction with the XML Conversion service.</para>
+        <para>It can handle Serialization, DeSerialization, Transformation as well as splitting and grouping. </para>
+      </remark>
+      <seealso cref="XMLConversion()"></seealso>
+    </interface>
+  </interfaces>
+</doc>
